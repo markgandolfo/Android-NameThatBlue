@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cars>
+    <car><name>Aston Martin</name><color>004f32</color></car>
+    <car><name>Audi</name><color>e21d38</color></car>
+    <car><name>BMW</name><color>3399cc</color></car>
+    <car><name>Bugatti</name><color>be0030</color></car>
+    <car><name>Citroën</name><color>d9152e</color></car>
+    <car><name>Daihatsu</name><color>ff0000</color></car>
+    <car><name>Ferrari</name><color>fff200</color></car>
+    <car><name>Ford</name><color>1F97D0</color></car>
+    <car><name>Holden</name><color>ec1c2e</color></car>
+    <car><name>Honda</name><color>e11428</color></car>
+    <car><name>Hyundai</name><color>006faf</color></car>
+    <car><name>Isuzu</name><color>ff0000</color></car>
+    <car><name>Jeep</name><color>485f2b</color></car>
+    <car><name>Lada</name><color>0060a9</color></car>
+    <car><name>Lamborghini</name><color>f9ce5c</color></car>
+    <car><name>Land Rover</name><color>008948</color></car>
+    <car><name>Maserati</name><color>0c2e59</color></car>
+    <car><name>Mazda</name><color>0080c5</color></car>
+    <car><name>Mitsubishi</name><color>ea0033</color></car>
+    <car><name>Nissan</name><color>c71444</color></car>
+    <car><name>Opel</name><color>fbbf0c</color></car>
+    <car><name>Peugeot</name><color>0d224a</color></car>
+    <car><name>Proton</name><color>ffbd00</color></car>
+    <car><name>Renault</name><color>fdb515</color></car>
+    <car><name>SEAT</name><color>e53125</color></car>
+    <car><name>Skoda</name><color>42bd3b</color></car>
+    <car><name>Subaru</name><color>004489</color></car>
+    <car><name>Suzuki</name><color>e31b31</color></car>
+    <car><name>Toyota</name><color>ff0000</color></car>
+    <car><name>Volkswagen</name><color>1077b9</color></car>
+    <car><name>Volvo</name><color>0d3896</color></car>
+</cars>
