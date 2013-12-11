@@ -3,61 +3,100 @@ package com.nametheblue;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Game {
+import android.app.Application;
+
+public class Game extends Application {
 	static ArrayList<Product> products = new ArrayList<Product>();
 	ArrayList<Product> activeChoices = new ArrayList<Product>();
 	ArrayList<Integer> usedProducts = new ArrayList<Integer>();
 	private Random randomGenerator;
 	private int score = 0;
-	int correctChoiceIndex;
-	int choiceOneIndex, choiceTwoIndex, randomColorIndex;
+	int choiceOneIndex, choiceTwoIndex, correctChoiceIndex;
+	
+	boolean gameLoaded = false;
 	
 	public Game() {
-		randomGenerator = new Random();
-		
-		loadProducts();
-		
-		choiceOneIndex = randomGenerator.nextInt(products.size());
-		choiceTwoIndex = randomGenerator.nextInt(products.size()); 
-		
-		while(choiceOneIndex == choiceTwoIndex) {
-			choiceTwoIndex = randomGenerator.nextInt(products.size());
+		log("Game Loaded?: " + gameLoaded);
+		if(!gameLoaded) {
+			log("Init Game");
+			loadProducts();
+			randomGenerator = new Random();
+			newChoices();
+			gameLoaded = true;
 		}
+	}
+	
+	public void newChoices(){
+		log("Setting Up Game");
+				
+		// Get a few unused Choices
+		choiceOneIndex = getUnusedChoice();
+		choiceTwoIndex = getUnusedChoice();
 		
-		// Grab two active choices 
-		activeChoices.add(products.get(choiceOneIndex));
-		activeChoices.add(products.get(choiceTwoIndex));
-
-		usedProducts.add(choiceOneIndex);
-		usedProducts.add(choiceTwoIndex);
+		// Set the active choices
+		activeChoices.add(0, products.get(choiceOneIndex));
+		activeChoices.add(1, products.get(choiceTwoIndex));		
 		
 		// Get the correct choice
 		correctChoiceIndex = randomGenerator.nextInt(2);
 	}
-
-	public ArrayList<Product> getchoices() {
-		return activeChoices;
+	
+	/**
+	 * Generate a random number and get an unused product for the game
+	 * @return Integer
+	 */
+	private int getUnusedChoice() {
+		boolean found = false;
+		int randomNumber = 0;
+		
+		while(!found) {
+			log("Looking for unused number");
+			randomNumber = randomGenerator.nextInt(products.size());
+			if(usedProducts.indexOf(randomNumber) < 0) {
+				log("Found " + randomNumber);
+				usedProducts.add(randomNumber);
+				found = true;
+			}
+		}
+		return randomNumber;
+	}
+	
+	public Product getFirstChoice() {
+		return activeChoices.get(0);
+	}
+	
+	public Product getSecondChoice() {
+		return activeChoices.get(1);
 	}
 	
 	public Product getCorrectChoice() {
-		return products.get(correctChoiceIndex);
+		return activeChoices.get(correctChoiceIndex);
 	}
 	
-	public void checkAnswer(int answer) {
+	/*
+	 * Check the answer
+	 * @return Boolean - True if correct, or false if incorrect answer
+	 */
+	public boolean checkAnswer(int answer) {
 		if(answer == correctChoiceIndex) {
 			score++;
-		}
+			log("true");
+			return true;
+		} 
+		log("false");
+		return false;
 	}
 	
 	public int getScore() {
 		return score;
 	}
 	
-	public int getProductCount() {
-		return products.size();
+	private void log(String message) {
+		System.out.println(message);
 	}
 	
 	private void loadProducts() {
+		log("Loading Products");
 		products.add(new Product("Aston Martin", "#004f32"));
         products.add(new Product("Audi", "#e21d38"));
         products.add(new Product("BMW", "#3399cc"));
