@@ -25,14 +25,13 @@ public class ResultActivity extends Activity {
 		message = (TextView) findViewById(R.id.result_message);
 		correct = getIntent().getBooleanExtra("correct", false);
 		if(correct) {
-			message.setText(getResources().getString(R.string.correct));
+			message.setText(getResources().getString(R.string.correct_message));
 		} else {
-			message.setText(getResources().getString(R.string.incorrect));
+			message.setText(getResources().getString(R.string.incorrect_message) + " " + state.getCorrectChoice().name);
 		}
 		
-		
 		score = (TextView) findViewById(R.id.score);
-		score.setText(state.getScore() + " Out of " + state.getTotalProductCount());
+		score.setText(state.getScore() + " / " + state.getTotalPlayed() + " " + getResources().getString(R.string.correct));
 		
 		new Handler().postDelayed(new Runnable() {
         @Override

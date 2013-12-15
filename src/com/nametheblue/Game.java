@@ -12,6 +12,7 @@ public class Game extends Application {
 	ArrayList<Integer> usedProducts = new ArrayList<Integer>();
 	private Random randomGenerator;
 	private int score = 0;
+	private int played = 0;
 	int choiceOneIndex, choiceTwoIndex, correctChoiceIndex;
 	
 	boolean gameLoaded = false;
@@ -25,7 +26,8 @@ public class Game extends Application {
 		}
 	}
 	
-	public void newChoices(){				
+	public void newChoices(){
+		played++;
 		// Get a few unused Choices
 		choiceOneIndex = getUnusedChoice();
 		choiceTwoIndex = getUnusedChoice();
@@ -46,6 +48,9 @@ public class Game extends Application {
 		boolean found = false;
 		int randomNumber = 0;
 		
+		if(usedProducts.size() == products.size()) {
+			usedProducts.removeAll(usedProducts);
+		}
 		while(!found) {
 			randomNumber = randomGenerator.nextInt(products.size());
 			if(usedProducts.indexOf(randomNumber) < 0) {
@@ -65,7 +70,6 @@ public class Game extends Application {
 	}
 	
 	public Product getCorrectChoice() {
-		Log.d("Correct Choice", activeChoices.get(correctChoiceIndex).toString());
 		return activeChoices.get(correctChoiceIndex);
 	}
 	
@@ -87,6 +91,10 @@ public class Game extends Application {
 	
 	public int getTotalProductCount() {
 		return products.size();
+	}
+	
+	public int getTotalPlayed() {
+		return played;
 	}
 		
 	private void loadProducts() {
