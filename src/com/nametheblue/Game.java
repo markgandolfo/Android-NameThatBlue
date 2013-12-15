@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.app.Application;
+import android.util.Log;
 
 public class Game extends Application {
 	static ArrayList<Product> products = new ArrayList<Product>();
@@ -16,9 +17,7 @@ public class Game extends Application {
 	boolean gameLoaded = false;
 	
 	public Game() {
-		log("Game Loaded?: " + gameLoaded);
 		if(!gameLoaded) {
-			log("Init Game");
 			loadProducts();
 			randomGenerator = new Random();
 			newChoices();
@@ -26,9 +25,7 @@ public class Game extends Application {
 		}
 	}
 	
-	public void newChoices(){
-		log("Setting Up Game");
-				
+	public void newChoices(){				
 		// Get a few unused Choices
 		choiceOneIndex = getUnusedChoice();
 		choiceTwoIndex = getUnusedChoice();
@@ -50,10 +47,8 @@ public class Game extends Application {
 		int randomNumber = 0;
 		
 		while(!found) {
-			log("Looking for unused number");
 			randomNumber = randomGenerator.nextInt(products.size());
 			if(usedProducts.indexOf(randomNumber) < 0) {
-				log("Found " + randomNumber);
 				usedProducts.add(randomNumber);
 				found = true;
 			}
@@ -70,6 +65,7 @@ public class Game extends Application {
 	}
 	
 	public Product getCorrectChoice() {
+		Log.d("Correct Choice", activeChoices.get(correctChoiceIndex).toString());
 		return activeChoices.get(correctChoiceIndex);
 	}
 	
@@ -80,10 +76,8 @@ public class Game extends Application {
 	public boolean checkAnswer(int answer) {
 		if(answer == correctChoiceIndex) {
 			score++;
-			log("true");
 			return true;
 		} 
-		log("false");
 		return false;
 	}
 	
@@ -91,12 +85,12 @@ public class Game extends Application {
 		return score;
 	}
 	
-	private void log(String message) {
-		System.out.println(message);
+	public int getTotalProductCount() {
+		return products.size();
 	}
-	
+		
 	private void loadProducts() {
-		log("Loading Products");
+		Log.d("loadProducts", "Loading Products");
 		products.add(new Product("Aston Martin", "#004f32"));
         products.add(new Product("Audi", "#e21d38"));
         products.add(new Product("BMW", "#3399cc"));

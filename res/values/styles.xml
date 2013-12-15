@@ -19,5 +19,6 @@
 		<item name="android:shadowColor">#000000</item>
 		<item name="android:shadowRadius">.5</item>
     </style>
+    <color name="Background">#336699</color>
 
 </resources>
