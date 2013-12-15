@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -35,11 +36,15 @@ public class MainActivity extends Activity {
 	}
 	
 
-	private void setupListener() {
+	private void setupListener() {		
 		firstChoice.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				Boolean correct;
+				Game state = ((Game) getApplicationContext());
+				correct = state.checkAnswer(0);
 				Intent i = new Intent(MainActivity.this, ResultActivity.class);
+				i.putExtra("correct", correct);
 				startActivity(i);
 			}
 		});
@@ -47,7 +52,12 @@ public class MainActivity extends Activity {
 		secondChoice.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				Boolean correct;
+				Game state = ((Game) getApplicationContext());
+				correct = state.checkAnswer(1);
+
 				Intent i = new Intent(MainActivity.this, ResultActivity.class);
+				i.putExtra("correct", correct);
 				startActivity(i);
 			}
 		});
@@ -58,6 +68,7 @@ public class MainActivity extends Activity {
 		firstChoice.setText(String.valueOf(state.getFirstChoice().name));
 		secondChoice.setText(String.valueOf(state.getSecondChoice().name));
 		activityMain.setBackgroundColor(Color.parseColor(state.getCorrectChoice().color));
+		Log.d("CorrectAnswer", state.getCorrectChoice().name);
 	}
 	
 	@Override

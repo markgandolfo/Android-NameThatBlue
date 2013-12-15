@@ -5,4 +5,6 @@
     <string name="or">or</string>
     <string name="first_choice">Loading First Choice</string>
     <string name="second_choice">Loading Second Choice</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
 </resources>
