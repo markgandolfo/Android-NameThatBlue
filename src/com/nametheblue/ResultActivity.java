@@ -34,14 +34,14 @@ public class ResultActivity extends Activity {
 		score.setText(state.getScore() + " / " + state.getTotalPlayed() + " " + getResources().getString(R.string.correct));
 		
 		new Handler().postDelayed(new Runnable() {
-        @Override
-        public void run() {
-			state.newChoices();
-            final Intent mainIntent = new Intent(ResultActivity.this, MainActivity.class);
-            ResultActivity.this.startActivity(mainIntent);
-            ResultActivity.this.finish();
-        }
-    }, 5000);
+	        @Override
+	        public void run() {
+				state.newChoices();
+	            final Intent mainIntent = new Intent(ResultActivity.this, MainActivity.class);
+	            ResultActivity.this.startActivity(mainIntent);
+	            ResultActivity.this.finish();
+	        }
+		}, 2000);
 		
 	}
 
